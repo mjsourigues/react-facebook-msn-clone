@@ -21,7 +21,7 @@
 .message_guestCard{
     margin: 10px;
     width: fit-content;
-    background-color: grey !important;
+    background-color: green !important;
     border-radius: 35px !important;
     color: white!important;
     text-align: left !important;

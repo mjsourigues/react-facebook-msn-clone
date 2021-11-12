@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import "./Message.css";
 
-function Message({message, username}) {
-    const isUser = username === message.userName;
+
+const Message = forwardRef(({message, username}, ref) => {
+    const isUser = username === message.username;
 
     return (
-        <div className={`message ${isUser && 'message__user'}`}>
+        <>
+        <div ref={ref} className={`message ${isUser && 'message__user'}`}>
             {/* CSSS SOLO APLICABLE AL USUARIO LOGUEADO, PARA DIFERENCIARLO */}
             {console.log("Resultado"+ isUser)}
             <Card className={isUser ? "message__userCard" : "message_guestCard"}>
@@ -18,12 +20,13 @@ function Message({message, username}) {
                         variant="h5"
                         component="h2"
                     >
-                        {message.username}:{message.message}
+                        {!isUser && `${message.username || "Usuario desconocido"}: `}{message.message}
                     </Typography>
                 </CardContent>
             </Card>
         </div>
+        </>
     )
-}
+})
 
 export default Message
